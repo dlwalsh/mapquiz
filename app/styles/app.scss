@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+}
+
+.app {
+    display: flex;
+    flex-flow: column;
+    height: 100vh;
+}
+
+.main {
+    flex: 0 1 auto;
+    overflow: auto;
+}
+
+.bar {
+    background: #ef5350;
+    border-top: 2px solid black;
+    flex: 0 0 auto;
+    margin-top: auto;
+    padding: 0.5rem 2rem;
+}
