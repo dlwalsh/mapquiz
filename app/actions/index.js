@@ -1,17 +1,17 @@
 import * as types from '../constants/ActionTypes';
 
-export function prompt(index) {
+export function choice(index) {
     return {
-        type: types.PROMPT,
+        type: types.CHOICE,
         index
     };
 }
 
-export function guess(index, guess) {
+export function guess(index, answer) {
     return {
         type: types.GUESS,
         index,
-        guess
+        answer
     };
 }
 

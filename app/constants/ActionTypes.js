@@ -1,3 +1,3 @@
-export const GUESS = Symbol('GUESS');
-export const PROMPT = Symbol('PROMPT');
-export const RESET = Symbol('RESET');
+export const GUESS = 'GUESS';
+export const CHOICE = 'PROMPT';
+export const RESET = 'RESET';

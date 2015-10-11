@@ -6,15 +6,15 @@ const initialState = data.features.map((feat) => ({
     correct: false
 }));
 
-export default function regions(state = initialState, action) {
+export default function (state = initialState, action) {
 
     switch (action.type) {
 
     case GUESS:
-        const { guess, index } = action;
+        const { answer, index } = action;
         return [
             ...state.slice(0, index),
-            assessGuess(state[index], guess),
+            assessGuess(state[index], answer),
             ...state.slice(index + 1)
         ];
 
@@ -27,9 +27,9 @@ export default function regions(state = initialState, action) {
 
 }
 
-function assessGuess(item, guess) {
+function assessGuess(item, answer) {
     return Object.assign({}, item, {
-        correct: guess === item.name
+        correct: item.name.toLowerCase() === answer.toLowerCase()
     });
 }
 

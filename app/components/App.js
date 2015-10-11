@@ -11,7 +11,9 @@ export default class App extends Component {
 
     render() {
 
-        const { dispatch, prompt, regions } = this.props;
+        const { answer, choice, dispatch, regions } = this.props;
+        const correct = typeof choice === 'number' ? regions[choice].correct : false;
+        const value = correct ? regions[choice].name : answer;
         const actions = bindActionCreators(RegionActions, dispatch);
 
         return (
@@ -19,13 +21,16 @@ export default class App extends Component {
                 <div className="main">
                     <SVGNode
                         actions={actions}
+                        choice={choice}
                         data={data}
-                        prompt={prompt}
                         regions={regions}
                     />
                 </div>
                 <Bar
                     actions={actions}
+                    choice={choice}
+                    correct={correct}
+                    value={value}
                 />
             </div>
         );
@@ -34,13 +39,8 @@ export default class App extends Component {
 
 }
 
-App.propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    prompt: PropTypes.number,
-    regions: PropTypes.array.isRequired
-};
-
 export default connect((state) => ({
-    prompt: state.prompt,
+    answer: state.answer,
+    choice: state.choice,
     regions: state.regions
 }))(App);

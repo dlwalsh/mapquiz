@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
-import prompt from './prompt';
+import answer from './answer';
+import choice from './choice';
 import regions from './regions';
 
 const rootReducer = combineReducers({
-    prompt,
+    answer,
+    choice,
     regions
 });
 

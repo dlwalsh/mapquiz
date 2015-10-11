@@ -1,28 +1,54 @@
 import React, { Component, PropTypes } from 'react';
-
-import Button from '../../../react-materialize/src/Button';
+import { findDOMNode } from 'react-dom';
 
 export default class Bar extends Component {
 
+    componentDidMount() {
+        this.focus();
+    }
+
+    componentDidUpdate() {
+        this.focus();
+    }
+
+    focus() {
+        const { input } = this.refs;
+        if (input) {
+            findDOMNode(input).focus();
+        }
+    }
+
+    handleInput(value) {
+        const { actions, choice } = this.props;
+        actions.guess(choice, value);
+    }
+
     render() {
 
-        const { actions } = this.props;
+        const { actions, choice, correct, value } = this.props;
 
         return (
             <div className="bar">
-                <Button
-                    className="waves-effect indigo btn"
-                    waves="effect"
+                <button
+                    className="waves-effect red darken-2 btn"
                     onClick={actions.reset}
                 >
                     Reset
-                </Button>
+                </button>
+                <span className="entry-wrapper">
+                    {choice !== null && (
+                        <input
+                            ref="input"
+                            type="text"
+                            className={correct ? 'correct' : 'entry'}
+                            disabled={correct}
+                            onChange={(event) => this.handleInput(event.target.value)}
+                            value={value}
+                        />
+                    )}
+                </span>
             </div>
         );
 
     }
 }
-
-Bar.propTypes = {
-    actions: PropTypes.object.isRequired
-};

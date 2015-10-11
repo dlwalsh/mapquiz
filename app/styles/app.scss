@@ -6,6 +6,7 @@ body {
     display: flex;
     flex-flow: column;
     height: 100vh;
+    width: 100vw;
 }
 
 .main {
@@ -14,9 +15,42 @@ body {
 }
 
 .bar {
-    background: #ef5350;
+    background: #eceff1;
     border-top: 2px solid black;
+    display: flex;
     flex: 0 0 auto;
+    justify-content: space-between;
     margin-top: auto;
-    padding: 0.5rem 2rem;
+    padding: 1rem 10rem 1rem 2rem;
+    position: relative;
+}
+
+.entry-wrapper {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+input[type=text] {
+    font-size: 1.125rem;
+    height: 2.25rem;
+    margin: 0;
+    &.entry {
+        &, &:focus {
+            border-color: black;
+            box-shadow: 0 1px 0 0 black;
+            color: black;
+        }
+    }
+    &.correct {
+        &, &:focus {
+            border-bottom: 1px solid #009688;
+            box-shadow: 0 1px 0 0 #009688;
+            color: #009688;
+        }
+    }
+}
+
+.entry-answer {
+    height: 2.25rem;
+    font-size: 1.125rem;
 }
