@@ -1,28 +1,39 @@
 /*eslint-env node */
 
+var path = require('path');
+var webpack = require('webpack');
+
 module.exports = {
-    entry: './app/index.js',
+    entry: [
+        './app/index',
+        'webpack-hot-middleware/client'
+    ],
     output: {
+        path: path.join(__dirname, 'dist'),
         filename: 'bundle.js',
-        path: 'dist'
+        publicPath: '/static/'
     },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin()
+    ],
     module: {
         preLoaders: [
-            { test: /\.json$/, loader: 'json-loader' }
+            {
+                test: /\.json$/,
+                loader: 'json'
+            }
         ],
         loaders: [
             {
                 test: /\.js$/,
-                loader: 'babel',
-                query: {
-                    optional: ['es7.classProperties']
-                }
+                exclude: /node_modules/,
+                loader: 'babel'
             },
             {
                 test: /\.scss$/,
-                loader: 'style-loader!css-loader!sass-loader'
+                loader: 'style!css!sass'
             }
-//            { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' } // inline base64 URLs for <=8k images, direct URLs for the rest
         ]
     }
 };
