@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { findDOMNode } from 'react-dom';
+import { RaisedButton, TextField } from 'material-ui';
 
 export default class Bar extends Component {
 
@@ -14,7 +14,7 @@ export default class Bar extends Component {
     focus() {
         const { input } = this.refs;
         if (input) {
-            findDOMNode(input).focus();
+            input.focus();
         }
     }
 
@@ -29,21 +29,20 @@ export default class Bar extends Component {
 
         return (
             <div className="bar">
-                <button
-                    className="waves-effect red darken-2 btn"
-                    onClick={actions.reset}
-                >
-                    Reset
-                </button>
+                <RaisedButton
+                    label="Reset"
+                    onTouchTap={actions.reset}
+                    primary
+                />
                 <span className="entry-wrapper">
                     {choice !== null && (
-                        <input
+                        <TextField
                             ref="input"
                             type="text"
-                            className={correct ? 'correct' : 'entry'}
+                            hintText="Enter answer"
                             disabled={correct}
-                            onChange={(event) => this.handleInput(event.target.value)}
                             value={value}
+                            onChange={(event) => this.handleInput(event.target.value)}
                         />
                     )}
                 </span>
