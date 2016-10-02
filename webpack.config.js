@@ -3,20 +3,17 @@
 var path = require('path');
 var webpack = require('webpack');
 
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 module.exports = {
     entry: [
-        './app/index',
-        'webpack-hot-middleware/client'
+        './app/index'
     ],
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.js',
         publicPath: '/static/'
     },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
-    ],
     module: {
         preLoaders: [
             {
@@ -32,8 +29,22 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                loader: 'style!css!sass'
+                loader: ExtractTextPlugin.extract('style', 'css', 'sass')
             }
         ]
-    }
+    },
+    plugins: [
+        new ExtractTextPlugin('style.css'),
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compressor: {
+                warnings: false
+            }
+        })
+    ]
 };

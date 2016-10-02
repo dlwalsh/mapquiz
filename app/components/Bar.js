@@ -31,7 +31,7 @@ export default class Bar extends Component {
             <div className="bar">
                 <RaisedButton
                     label="Reset"
-                    onTouchTap={actions.reset}
+                    onClick={actions.reset}
                     primary
                 />
                 <span className="entry-wrapper">

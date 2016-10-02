@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import data from '../data/usa.json';
 import Bar from './Bar';
 import SVGNode from './SVGNode';
-import data from '../data/usa.json';
 import * as RegionActions from '../actions';
 
 export default class App extends Component {

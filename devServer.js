@@ -5,7 +5,7 @@ var express = require('express');
 var webpack = require('webpack');
 var devMiddleware = require('webpack-dev-middleware');
 var hotMiddleware = require('webpack-hot-middleware');
-var config = require('./webpack.config');
+var config = require('./webpack.config.dev');
 
 var app = express();
 var compiler = webpack(config);
@@ -21,7 +21,7 @@ app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(3000, 'localhost', function(err) {
+app.listen(3001, 'localhost', function(err) {
     if (err) {
         console.log(err);
         return;
